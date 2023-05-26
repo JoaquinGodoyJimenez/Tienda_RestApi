@@ -1,12 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new  Pool({
-    host: 'localhost',
-    user: 'postgres',
-    password: 'Pikmin45',
-    database: 'tienda',
-    port: '5432',
-})
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
 const getUsers = async (req, res) => {
     const response = await pool.query('SELECT * FROM usuario');
