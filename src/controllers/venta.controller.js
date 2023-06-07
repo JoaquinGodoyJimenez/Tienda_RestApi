@@ -15,7 +15,7 @@ const getSales = async (req, res) => {
 
 const getSaleByID = async (req, res) => {
     const id = req.params.id;
-    const response = await pool.query("SELECT v.id_venta, v.fecha, u.id_usuario, u.usuario, t.id_tienda, t.tienda, e.id_empleado, e.empleado FROM venta AS v LEFT JOIN usuario AS u ON u.id_usuario = v.id_usuario LEFT JOIN tienda AS t ON t.id_tienda = v.id_tienda LEFT JOIN empleado AS e ON e.id_empleado = v.id_empleado WHERE id_venta = $1", [id]);
+    const response = await pool.query("SELECT v.id_venta, v.fecha, u.id_usuario, u.usuario, t.id_tienda, t.tienda, e.id_empleado, e.empleado FROM venta AS v LEFT JOIN usuario AS u ON u.id_usuario = v.id_usuario LEFT JOIN tienda AS t ON t.id_tienda = v.id_tienda LEFT JOIN empleado AS e ON e.id_empleado = v.id_empleado WHERE v.id_venta = $1", [id]);
     res.json(response.rows);
 }
 
